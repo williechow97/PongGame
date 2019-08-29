@@ -103,18 +103,18 @@ while True:
         ball.sety(290)
         # reverse direction when hitting border
         ball.dy *= -1
-        winsound.PlaySound("Pong Game\sounds\bounce.wav", winsound.SND_FILENAME)
+        winsound.PlaySound("beep.wav", winsound.SND_ASYNC)
 
     if ball.ycor() < -290:
         ball.sety(-290)
         # reverse direction when hitting border
         ball.dy *= -1
-        winsound.PlaySound("bounce.wav", winsound.SND_ASYNC)
+        winsound.PlaySound("beep.wav", winsound.SND_ASYNC)
         
     if ball.xcor() >390:
         ball.goto(0,0)
         ball.dx *= -1
-        winsound.PlaySound("bounce.wav", winsound.SND_ASYNC)       
+        winsound.PlaySound("beep.wav", winsound.SND_ASYNC)       
         score_a += 1
         pen.clear()
         pen.write("Player A: {}  Player B: {}".format(score_a, score_b), align="center", font=("Courier", 24, "normal"))
@@ -122,15 +122,17 @@ while True:
     if ball.xcor() < -390:
         ball.goto(0,0)
         ball.dx *= -1
-        winsound.PlaySound("bounce.wav", winsound.SND_ASYNC)        
+        winsound.PlaySound("beep.wav", winsound.SND_ASYNC)        
         score_b += 1
         pen.clear()
         pen.write("Player A: {}  Player B: {}".format(score_a, score_b), align="center", font=("Courier", 24, "normal"))
         
     # Paddle and ball collisions
     if (ball.xcor() > 340 and ball.xcor() < 350) and (ball.ycor() < paddle_b.ycor() + 40) and (ball.ycor() > paddle_b.ycor() - 40):
+        winsound.PlaySound("pongbounce.wav", winsound.SND_ASYNC)
         ball.setx(340)
         ball.dx *= -1
     if (ball.xcor() < -340 and ball.xcor() > -350) and (ball.ycor() < paddle_a.ycor() + 40) and (ball.ycor() > paddle_a.ycor() - 40):
         ball.setx(-340)
+        winsound.PlaySound("pongbounce.wav", winsound.SND_ASYNC)        
         ball.dx *= -1
